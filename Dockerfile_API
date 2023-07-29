@@ -1,0 +1,18 @@
+# Using the latest LTS version of node
+FROM node:12
+
+# Create app directory
+WORKDIR /home/my/app
+
+COPY package.json package-lock.json ./
+
+# Install app dependencies
+RUN npm install -g nodemon 2>&1
+RUN npm install --no-audit --dev 2>&1
+
+# Copy app source
+COPY . .
+
+EXPOSE 8080
+
+CMD ["nodemon", "app.js"]

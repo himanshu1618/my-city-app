@@ -1,0 +1,57 @@
+version: '2'
+services:
+  mysql:
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    image: 'mysql:5.7'
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'mysql_data:/var/lib/mysql'
+      - './mysql-schema:/docker-entrypoint-initdb.d'
+  redis:
+    image: 'redis:6.0'
+    ports:
+      - 6379
+  nginx:
+    image: nginx
+    links:
+      - api
+      - ui
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+      - '3002:3002'
+    volumes:
+      - './tools/nginx/nginx.dev.conf:/etc/nginx/nginx.conf:ro'
+      - './tools/nginx/certificate.crt:/etc/nginx/ssl/certificate.crt:ro'
+      - './tools/nginx/certificate.key:/etc/nginx/ssl/certificate.key:ro'
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile_API
+    command: nodemon app.js
+    depends_on:
+      - redis
+      - mysql
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '8080:8080'
+    volumes:
+      - '.:/home/my/app'
+      - /home/my/app/node_modules
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile_UI
+    command: 'npm run ui:start'
+    ports:
+      - 3000
+      - 3001
+      - 3002
+    volumes:
+      - '.:/home/my/app'
+      - /home/my/app/node_modules
+volumes:
+  mysql_data: ~

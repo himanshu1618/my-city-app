@@ -1,0 +1,17 @@
+// Defines colors in a map for easy access via 'color' function
+$colors: (
+  primary-white:#fff,
+  primary-black:#000,
+  primary-blue: #00A1D8,
+  primary-green: #2eb50b,
+  gray: #898D91,
+  dark-gray: #504D4D,
+  light-gray: #949494,
+  lightest-gray: #f7f7f7,
+  secondary-gray: #DADCE0,
+  link: #4EC5E1
+);
+
+@function color($key) {
+  @return map-get($colors, $key);
+}

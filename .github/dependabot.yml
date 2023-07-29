@@ -1,0 +1,37 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    # Location of package manifests
+    directory: "/"
+    schedule:
+      # Check for updates managed by npm once a month
+      interval: "monthly"
+      # Check for npm updates on Sundays
+      day: "sunday"
+      # Check for npm updates at 9am
+      time: "09:00"
+      # Use India Standard Time (UTC +05:30)
+      timezone: "Asia/Kolkata"
+    # Raise pull requests for version updates to npm against the `develop` branch
+    target-branch: "develop"
+    # Labels on pull requests for security and version updates
+    labels:
+      - "npm dependencies"
+    # Increase the version requirements for npm only when required
+    versioning-strategy: increase-if-necessary
+    # Allow up to 5 open pull requests for npm dependencies
+    open-pull-requests-limit: 5
+    # Disable rebasing for npm pull requests
+    rebase-strategy: "disabled"
+    # Add assignees
+    assignees:
+      - "himanshu1618"
+    # Add reviewers
+    reviewers:
+      - "himanshu1618"

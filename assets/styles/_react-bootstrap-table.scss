@@ -1,0 +1,89 @@
+.react-bootstrap-table {
+  .table th, .table td {
+    border-top: none;
+  }
+  .table thead th, .table tbody td {
+    border-bottom: 2px solid #E4E7F3;
+  }
+  .table th {
+    font-family: 'Avenir-Heavy', Helvetica, Arial, serif;
+    font-size: 14px;
+    color: color('primary-black');
+    text-align: left;
+    line-height: 19px;
+
+    .dir-rtl & {
+      text-align: right;
+    }
+  }
+  .table td {
+    font-family: 'Helvetica', Helvetica, Arial, serif;
+    font-size: 15px;
+    color: color('dark-gray');
+    text-align: left;
+    vertical-align: middle;
+
+    .dir-rtl & {
+      text-align: right;
+    }
+  }
+
+  tr.disabled td {
+    color: color('gray');
+  }
+  .table td {
+    .table-cell-img-txt {
+      display: flex;
+      min-width: 150px;
+
+      .table-cell-img {
+        flex-direction: column;
+        justify-content: flex-start;
+        border-radius: 50%;
+      }
+
+      .table-cell-txt {
+        flex-direction: column;
+        margin-left: 15px;
+
+        .dir-rtl & {
+          margin-right: 15px;
+        }
+      }
+    }
+
+    .actions {
+      color: rgba(117, 117, 117, 1.0);
+      text-align: center;
+
+      .action-icon {
+        display: inline-block;
+        padding: 5px 15px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .caret {
+    display:inline-block;
+    width:0;
+    height:0;
+    margin-left:2px;
+    vertical-align:middle;
+    border-top:4px dashed;
+    border-top:4px solid\9;
+    border-right:4px solid transparent;
+    border-left:4px solid transparent
+   }
+   .dropdown,
+   .dropup {
+    position:relative
+   }
+   .dropup .caret,
+  .navbar-fixed-bottom .dropdown .caret {
+   content:'';
+   border-top:0;
+   border-bottom:4px dashed;
+   border-bottom:4px solid\9
+  }
+}

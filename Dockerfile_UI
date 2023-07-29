@@ -1,0 +1,19 @@
+# Using the latest LTS version of node
+FROM node:12
+
+# Create app directory
+WORKDIR /home/my/app
+
+COPY package.json package-lock.json ./
+
+# Install app dependencies
+RUN npm install 2>&1
+
+# Copy app source
+COPY . .
+
+EXPOSE 3000
+EXPOSE 3001
+EXPOSE 3002
+
+CMD ["npm", "run", "ui:start"]
